@@ -3,7 +3,6 @@
   get_url:
     url: https://getcomposer.org/installer
     dest: /tmp/composer-installer.php
-    mode: 0755
 
 - name: Run Composer installer.
   command: >
@@ -11,27 +10,23 @@
     chdir=/tmp
     creates=/usr/local/bin/composer
 
-- name: Move Composer into globally-accessible location.
+- name: Move Composer to composer_exec.
   shell: >
-    mv /tmp/composer.phar {{ composer_path }}
-    creates={{ composer_path }}
+    mv /tmp/composer.phar {{ composer_exec }}
+    creates={{ composer_exec }}
 
-- name: Update Composer to latest version (if configured).
+- name: Update Composer version.
   shell: >
-    php {{ composer_path }} self-update
+    php {{ composer_exec }} self-update
   register: composer_update
   changed_when: "'Updating to version' in composer_update.stdout"
-  when: composer_keep_updated
+  when: composer_self_update
 
-- name: Ensure composer directory exists.
-  file:
-    path: "{{ composer_home_path }}"
-    state: directory
+- name: Create Composer home dir.
+  file: path={{ composer_home_dir }} state=directory
 
-- name: Add GitHub OAuth token for Composer (if configured).
-  template:
-    src: "auth.json.j2"
-    dest: "{{ composer_home_path }}/auth.json"
+- name: Add Composer GitHub OAuth token.
+  template: src=auth.json.j2 dest={{ composer_home_dir }}/auth.json
   when: composer_github_oauth_token != ''
 
 - include: global-require.yml

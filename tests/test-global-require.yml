@@ -7,5 +7,5 @@
       - { name: phpunit/phpunit, release: "@stable" }
 
   roles:
-    - geerlingguy.php
+    - rwanyoike.php
     - ansible-role-composer
