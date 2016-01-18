@@ -1,31 +1,31 @@
 ---
-- name: Download Composer installer.
+- name: download composer installer
   get_url:
     url: https://getcomposer.org/installer
     dest: /tmp/composer-installer.php
 
-- name: Run Composer installer.
+- name: run composer installer
   command: >
     php composer-installer.php
     chdir=/tmp
     creates=/usr/local/bin/composer
 
-- name: Move Composer to composer_exec.
+- name: move composer to composer_exec
   shell: >
     mv /tmp/composer.phar {{ composer_exec }}
     creates={{ composer_exec }}
 
-- name: Update Composer version.
+- name: update composer version
   shell: >
     php {{ composer_exec }} self-update
   register: composer_update
   changed_when: "'Updating to version' in composer_update.stdout"
   when: composer_self_update
 
-- name: Create Composer home dir.
+- name: create composer home dir
   file: path={{ composer_home_dir }} state=directory
 
-- name: Add Composer GitHub OAuth token.
+- name: add composer github oauth token
   template: src=auth.json.j2 dest={{ composer_home_dir }}/auth.json
   when: composer_github_oauth_token != ''
 

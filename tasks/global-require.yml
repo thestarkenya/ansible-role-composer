@@ -1,12 +1,12 @@
 ---
-- name: Install Composer global packages.
+- name: install composer global packages
   shell: >
-    COMPOSER_HOME={{ composer_home_dir }}
-    {{ composer_exec }} global require {{ item.name }}:{{ item.release | default('@stable') }} --no-progress
+    COMPOSER_HOME={{ composer_home_dir }} {{ composer_exec }} global require
+    {{ item.name }}:{{ item.release | default('@stable') }} --no-progress
     creates={{ composer_home_dir }}/vendor/{{ item.name }}
   with_items: composer_global_packages
 
-- name: Add Composer home dir to $PATH.
+- name: add composer home dir to $path
   template:
     src: composer.sh.j2
     dest: /etc/profile.d/composer.sh

@@ -15,16 +15,14 @@ Available variables are listed below, along with default values (see `defaults/m
 ```yaml
 composer_self_update: false
 composer_exec: /usr/local/bin/composer
-# The directory where global packages will be installed.
+# The directory where global packages will be installed
 composer_home_dir: ~/.composer
-# A list of packages to install globally. See commented examples below for
-# usage; the 'release' is optional, and defaults to '@stable'.
-composer_global_packages: []
-  # - { name: phpunit/phpunit, release: "4.7.x" }
-  # - { name: phpunit/phpunit, release: "@stable" }
 composer_add_to_path: true
-# GitHub OAuth token (used to help overcome API rate limits).
+# GitHub OAuth token (used to help overcome API rate limits)
 composer_github_oauth_token: ""
+# A list of packages to install globally. See commented examples below for
+# usage; the 'release' is optional, and defaults to '@stable'
+composer_global_packages: []
 ```
 
 ## Dependencies
@@ -47,6 +45,9 @@ Inside `vars/main.yml`:
 
 ```yaml
 composer_self_update: true
+composer_global_packages:
+  - name: phpunit/phpunit
+    release: "@stable"
 
 # ... etc ...
 ```

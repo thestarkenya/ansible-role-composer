@@ -1,11 +1,10 @@
 ---
 - hosts: localhost
   remote_user: root
-
   vars:
     composer_global_packages:
-      - { name: phpunit/phpunit, release: "@stable" }
-
+      - name: phpunit/phpunit
+        release: "@stable"
   roles:
     - rwanyoike.php
     - ansible-role-composer
