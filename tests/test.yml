@@ -2,5 +2,5 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - rwanyoike.php
+    - ansible-role-php
     - ansible-role-composer

@@ -6,5 +6,5 @@
       - name: phpunit/phpunit
         release: "@stable"
   roles:
-    - rwanyoike.php
+    - ansible-role-php
     - ansible-role-composer

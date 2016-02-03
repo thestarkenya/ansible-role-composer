@@ -1,6 +1,6 @@
 # Ansible Role: Composer
 
-[![Build Status](https://img.shields.io/travis/rwanyoike/ansible-role-composer.svg)](https://travis-ci.org/rwanyoike/ansible-role-composer) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/rwanyoike/ansible-role-composer/master/LICENSE)
+[![Build Status](https://img.shields.io/travis/thestarkenya/ansible-role-composer.svg)](https://travis-ci.org/thestarkenya/ansible-role-composer) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/thestarkenya/ansible-role-composer/master/LICENSE)
 
 Installs and configures Composer on RHEL/CentOS ~~or Debian/Ubuntu~~.
 
@@ -27,7 +27,7 @@ composer_global_packages: []
 
 ## Dependencies
 
-- rwanyoike.php (https://github.com/rwanyoike/ansible-role-php)
+- ansible-role-php (https://github.com/thestarkenya/ansible-role-php)
 
 ## Example Playbook
 
@@ -38,7 +38,7 @@ composer_global_packages: []
     - vars/main.yml
 
   roles:
-    - role: rwanyoike.composer
+    - role: ansible-role-composer
 ```
 
 Inside `vars/main.yml`:
@@ -55,8 +55,3 @@ composer_global_packages:
 ## License
 
 MIT
-
-## Author Information
-
-- This role was created in 2014 by [Jeff Geerling](http://jeffgeerling.com/), author of [Ansible for DevOps](http://ansiblefordevops.com/).
-- This role was forked in 2015 by [Raymond Wanyoike](https://github.com/rwanyoike).
